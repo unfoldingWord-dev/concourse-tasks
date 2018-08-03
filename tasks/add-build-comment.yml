@@ -8,7 +8,7 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-- name: concourse-tasks
+- name: concourse
 - name: build_meta
   path: input_meta
   optional: true
@@ -20,4 +20,4 @@ params:
   text:
 
 run:
-  path: concourse-tasks/scripts/run-add-build-comment.sh
+  path: concourse/scripts/run-add-build-comment.sh

@@ -3,7 +3,7 @@
 set -xe
 
 # copy input metadata to output
-./concourse-tasks/scripts/copy-dir.sh input_meta build_meta
+./concourse/scripts/copy-dir.sh input_meta build_meta
 
 cd code-base/
 
@@ -16,4 +16,4 @@ echo "TC_HELP_DESK_EMAIL=$TC_HELP_DESK_EMAIL" >> .env
 echo "BUILD=$HASH" >> .env
 
 # execute the appropriate platform builder
-HASH=$HASH VERSION=$VERSION ../concourse-tasks/scripts/run-build-$PLATFORM.sh
+HASH=$HASH VERSION=$VERSION BUILD_CDN=$BUILD_CDN ../concourse/scripts/run-build-$PLATFORM.sh

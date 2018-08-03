@@ -8,7 +8,7 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-- name: concourse-tasks
+- name: concourse
 - name: code-base
 # this will be copied to the output to propogate meta between tasks
 - name: build_meta
@@ -21,8 +21,9 @@ outputs:
 
 params:
   PLATFORM: linux # default value
+  BUILD_CDN: https://tc-builds.door43.org # default value
   TC_HELP_DESK_TOKEN:
   TC_HELP_DESK_EMAIL:
 
 run:
-  path: concourse-tasks/scripts/run-build.sh
+  path: concourse/scripts/run-build.sh

@@ -8,11 +8,11 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-- name: concourse-tasks
+- name: concourse
 - name: code-base
 
 outputs:
 - name: code-with-dependencies
 
 run:
-  path: concourse-tasks/scripts/run-install-deps.sh
+  path: concourse/scripts/run-install-deps.sh

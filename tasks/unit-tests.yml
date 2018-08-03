@@ -8,7 +8,7 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-- name: concourse-tasks
+- name: concourse
 - name: code-base
 
 outputs:
@@ -18,4 +18,4 @@ params:
 - CODECOV_TOKEN:
 
 run:
-  path: concourse-tasks/scripts/run-unit-tests.sh
+  path: concourse/scripts/run-unit-tests.sh

@@ -3,7 +3,7 @@
 set -xe
 
 # copy input to output
-./concourse-tasks/scripts/copy-dir.sh input_meta build_meta
+./concourse/scripts/copy-dir.sh input_meta build_meta
 
 # append new values
 echo $text >> build_meta/comment.md

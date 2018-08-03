@@ -1,7 +1,7 @@
 task_templates:
 - &install-deps
   task: install-dependencies
-  file: concourse-tasks/tasks/install-deps.yml
+  file: concourse/tasks/install-deps.yml
   timeout: 30m
 - &test-code
   task: run-unit-tests
@@ -9,11 +9,11 @@ task_templates:
     code-base: code-with-dependencies
   params:
     CODECOV_TOKEN: ((codecov-token))
-  file: concourse-tasks/tasks/unit-tests.yml
+  file: concourse/tasks/unit-tests.yml
   timeout: 1h
 - &build-linux
   task: build-linux
-  file: concourse-tasks/tasks/build.yml
+  file: concourse/tasks/build.yml
   timeout: 1h
   input_mapping:
     code-base: code-with-dependencies
@@ -29,7 +29,7 @@ task_templates:
         acl: public-read
 - &build-macos
   task: build-macos
-  file: concourse-tasks/tasks/build.yml
+  file: concourse/tasks/build.yml
   timeout: 1h
   input_mapping:
     code-base: code-with-dependencies
@@ -45,7 +45,7 @@ task_templates:
         acl: public-read
 - &build-windows
   task: build-windows
-  file: concourse-tasks/tasks/build.yml
+  file: concourse/tasks/build.yml
   timeout: 1h
   input_mapping:
     code-base: code-with-dependencies
@@ -99,10 +99,10 @@ resources:
   source:
     uri: https://github.com/unfoldingWord-dev/translationCore
     branch: develop
-- name: concourse-tasks
+- name: concourse
   type: git
   source:
-    uri: https://github.com/neutrinog/concourse-tasks
+    uri: https://github.com/unfoldingWord-dev/concourse-pipeline
     branch: master
 - name: prs-to-develop
   type: pull-request
@@ -139,7 +139,7 @@ jobs:
   serial: true
   public: false
   plan:
-  - get: concourse-tasks
+  - get: concourse
   - get: code-base
     resource: develop-branch
     trigger: true
@@ -157,9 +157,9 @@ jobs:
     trigger: true
     passed:
       - test-develop
-  - get: concourse-tasks
+  - get: concourse
   - task: record source branch
-    file: concourse-tasks/tasks/add-build-comment.yml
+    file: concourse/tasks/add-build-comment.yml
     params:
       text: "From the `develop` branch:"
   - do:
@@ -170,7 +170,7 @@ jobs:
     on_failure:
       do:
       - task: record failure
-        file: concourse-tasks/tasks/add-build-comment.yml
+        file: concourse/tasks/add-build-comment.yml
         params:
           text: "Some builds failed"
       - put: notify
@@ -190,7 +190,7 @@ jobs:
     resource: prs-to-develop
     trigger: true
     version: every
-  - get: concourse-tasks
+  - get: concourse
   - do:
     - put: prs-to-develop
       params:
@@ -223,7 +223,7 @@ jobs:
     version: every
     passed:
       - test-pr
-  - get: concourse-tasks
+  - get: concourse
   - do:
     - put: prs-to-develop
       params:
@@ -237,7 +237,7 @@ jobs:
     on_failure:
       do:
       - task: record failure
-        file: concourse-tasks/tasks/add-build-comment.yml
+        file: concourse/tasks/add-build-comment.yml
         params:
           text: "Some builds failed"
       - put: prs-to-develop

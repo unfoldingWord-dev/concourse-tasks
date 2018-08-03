@@ -3,7 +3,7 @@
 set -xe
 
 # copy input to output
-./concourse-tasks/scripts/copy-dir.sh code-base code-with-dependencies
+./concourse/scripts/copy-dir.sh code-base code-with-dependencies
 
 cd code-with-dependencies/
 
