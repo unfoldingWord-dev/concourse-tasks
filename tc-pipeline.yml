@@ -113,22 +113,19 @@ resources:
     base: develop
     ci_skip: true
     authorship_restriction: true
-# - name: upload-develop
-#   type: s3-folder
-#   source:
-#     bucket: tc-builds.door43.org
-#     path: develop
-#     access_key_id: ((aws-access-id))
-#     secret_access_key: ((aws-secret-key))
-#     region: us-west-2
-#     options:
-#       - "--exclude '*'"
-#       - "--include 'build/*'"
 - name: upload
   type: s3
   source:
     bucket: tc-builds.door43.org
     regexp: translationCore-(.*)-(.*)-(?P<version>.*)\.(.*)
+    access_key_id: ((aws-access-id))
+    secret_access_key: ((aws-secret-key))
+    region_name: us-west-2
+- name: upload-index
+  type: s3
+  source:
+    bucket: tc-builds.door43.org
+    versioned_file: index.html
     access_key_id: ((aws-access-id))
     secret_access_key: ((aws-secret-key))
     region_name: us-west-2
@@ -247,9 +244,15 @@ jobs:
           comment: build_meta/comment.md
           status: failure
     on_success:
-      put: prs-to-develop
-      params:
-        path: code-base
-        context: build
-        comment: build_meta/comment.md
-        status: success
+      do:
+      - put: prs-to-develop
+        params:
+          path: code-base
+          context: build
+          comment: build_meta/comment.md
+          status: success
+      - put: upload-index
+        params:
+          file: concourse/assets/index.html
+          acl: public-read
+          content_type: text/html
