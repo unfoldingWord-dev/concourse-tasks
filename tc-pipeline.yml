@@ -73,6 +73,9 @@ groups:
   jobs:
   - test-pr
   - build-pr
+- name: releases
+  jobs:
+  - test-release
 
 resource_types:
 - name: git-branch-heads
