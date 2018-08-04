@@ -197,11 +197,17 @@ jobs:
     - *install-deps
     - *test-code
     on_success:
-      put: prs-to-develop
-      params:
-        path: code-base
-        context: unit-tests
-        status: success
+      do:
+      - put: prs-to-develop
+        params:
+          path: code-base
+          context: unit-tests
+          status: success
+      - put: upload-index
+        params:
+          file: concourse/assets/index.html
+          acl: public-read
+          content_type: text/html
     on_failure:
       put: prs-to-develop
       params:
