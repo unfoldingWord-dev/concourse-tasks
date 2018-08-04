@@ -75,6 +75,10 @@ groups:
   - build-pr
 
 resource_types:
+- name: git-branch-heads
+  type: docker-image
+  source:
+    repository: vito/git-branch-heads-resource
 - name: pull-request
   type: docker-image
   source:
@@ -99,6 +103,11 @@ resources:
   source:
     uri: https://github.com/unfoldingWord-dev/translationCore
     branch: develop
+- name: release-branch
+  type: git-branch-heads
+  source:
+    uri: https://github.com/unfoldingWord-dev/translationCore
+    branches: [release-*]
 - name: concourse
   type: git
   source:
@@ -131,6 +140,20 @@ resources:
     region_name: us-west-2
 
 jobs:
+
+# test release branches
+- name: test-release
+  serial: true
+  public: false
+  plan:
+    - get: concourse
+    - get: code-base
+      resource: release-branch
+      trigger: true
+      version: every
+    - *install-deps
+    - *test-code
+
 # test develop branch
 - name: test-develop
   serial: true
