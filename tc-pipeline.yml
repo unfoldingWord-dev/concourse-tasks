@@ -76,6 +76,7 @@ groups:
 - name: releases
   jobs:
   - test-release
+  - build-release
 
 resource_types:
 - name: git-branch-heads
@@ -156,6 +157,40 @@ jobs:
       version: every
     - *install-deps
     - *test-code
+
+# build release branches
+- name: build-release
+  serial: true
+  public: false
+  plan:
+  - get: code-base
+    resource: release-branch
+    trigger: true
+    passed:
+      - test-release
+  - get: concourse
+  - task: record source branch
+    file: concourse/tasks/add-build-comment.yml
+    params:
+      text: "From the `release-*` branch:"
+  - do:
+    - *install-deps
+    - *build-linux
+    - *build-macos
+    - *build-windows
+    on_failure:
+      do:
+      - task: record failure
+        file: concourse/tasks/add-build-comment.yml
+        params:
+          text: "Some builds failed"
+      - put: notify
+        params:
+          text_file: build_meta/notification.txt
+    on_success:
+      put: notify
+      params:
+        text_file: build_meta/notification.txt
 
 # test develop branch
 - name: test-develop
