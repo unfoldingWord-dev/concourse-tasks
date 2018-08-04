@@ -188,9 +188,15 @@ jobs:
         params:
           text_file: build_meta/notification.txt
     on_success:
-      put: notify
-      params:
-        text_file: build_meta/notification.txt
+      do:
+      - put: notify
+        params:
+          text_file: build_meta/notification.txt
+      - put: upload-index
+        params:
+          file: concourse/assets/index.html
+          acl: public-read
+          content_type: text/html
 
 # test develop branch
 - name: test-develop
@@ -235,9 +241,15 @@ jobs:
         params:
           text_file: build_meta/notification.txt
     on_success:
-      put: notify
-      params:
-        text_file: build_meta/notification.txt
+      do:
+      - put: notify
+        params:
+          text_file: build_meta/notification.txt
+      - put: upload-index
+        params:
+          file: concourse/assets/index.html
+          acl: public-read
+          content_type: text/html
 
 # test pull requests
 - name: test-pr
@@ -258,17 +270,11 @@ jobs:
     - *install-deps
     - *test-code
     on_success:
-      do:
-      - put: prs-to-develop
-        params:
-          path: code-base
-          context: unit-tests
-          status: success
-      - put: upload-index
-        params:
-          file: concourse/assets/index.html
-          acl: public-read
-          content_type: text/html
+      put: prs-to-develop
+      params:
+        path: code-base
+        context: unit-tests
+        status: success
     on_failure:
       put: prs-to-develop
       params:
