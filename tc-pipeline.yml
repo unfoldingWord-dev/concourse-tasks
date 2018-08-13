@@ -138,7 +138,7 @@ resources:
   type: s3
   source:
     bucket: tc-builds.door43.org
-    versioned_file: index.html
+    regexp: (.*).html
     access_key_id: ((aws-access-id))
     secret_access_key: ((aws-secret-key))
     region_name: us-west-2
@@ -157,6 +157,11 @@ jobs:
       version: every
     - *install-deps
     - *test-code
+    - put: upload-index
+      params:
+        file: concourse/assets/index.html
+        acl: public-read
+        content_type: text/html
 
 # build release branches
 - name: build-release
@@ -188,15 +193,9 @@ jobs:
         params:
           text_file: build_meta/notification.txt
     on_success:
-      do:
-      - put: notify
-        params:
-          text_file: build_meta/notification.txt
-      - put: upload-index
-        params:
-          file: concourse/assets/index.html
-          acl: public-read
-          content_type: text/html
+      put: notify
+      params:
+        text_file: build_meta/notification.txt
 
 # test develop branch
 - name: test-develop
@@ -210,6 +209,11 @@ jobs:
     version: latest
   - *install-deps
   - *test-code
+  - put: upload-index
+    params:
+      file: concourse/assets/index.html
+      acl: public-read
+      content_type: text/html
 
 # build develop branch
 - name: build-develop
@@ -241,15 +245,9 @@ jobs:
         params:
           text_file: build_meta/notification.txt
     on_success:
-      do:
-      - put: notify
-        params:
-          text_file: build_meta/notification.txt
-      - put: upload-index
-        params:
-          file: concourse/assets/index.html
-          acl: public-read
-          content_type: text/html
+      put: notify
+      params:
+        text_file: build_meta/notification.txt
 
 # test pull requests
 - name: test-pr
@@ -275,12 +273,18 @@ jobs:
         path: code-base
         context: unit-tests
         status: success
+
     on_failure:
       put: prs-to-develop
       params:
         path: code-base
         context: unit-tests
         status: failure
+  - put: upload-index
+    params:
+      file: concourse/assets/index.html
+      acl: public-read
+      content_type: text/html
 
 # build pull request
 - name: build-pr
@@ -317,15 +321,9 @@ jobs:
           comment: build_meta/comment.md
           status: failure
     on_success:
-      do:
-      - put: prs-to-develop
-        params:
-          path: code-base
-          context: build
-          comment: build_meta/comment.md
-          status: success
-      - put: upload-index
-        params:
-          file: concourse/assets/index.html
-          acl: public-read
-          content_type: text/html
+      put: prs-to-develop
+      params:
+        path: code-base
+        context: build
+        comment: build_meta/comment.md
+        status: success
