@@ -98,7 +98,7 @@ As a convenience we have added a restart script to our concourse installation. R
 Workers will stall periodically (hopefully this will be [fixed](https://github.com/concourse/concourse/issues/1457) soon).
 To remedy stalled workers you can prune them.
 
-* `fly -t ci.door43 workers` lists workes and indicates which ones are stalled
-* `fly -t ci.door43 prune-worker -w <stalled-worker-id>` prune the stalled worker.
+* `fly -t ci.door43 workers` lists workers and indicates which ones are stalled
+* `fly -t ci.door43 prune-worker -w <stalled-worker-id>` will prune a stalled worker.
 
 > Note: it may take a few minutes for new workers to start after you have pruned stalled workers.
