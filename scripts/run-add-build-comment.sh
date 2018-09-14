@@ -12,8 +12,6 @@ echo $text >> build_meta/notification.txt
 ls -la code-base/.git
 cat code-base/.git/HEAD
 cat code-base/.git/FETCH_HEAD
-ls -la code-base/.git/branches
-
-cd code-base/
-BRANCH=$(git branch | awk -v FS=' ' '/\*/{print $NF}' | sed 's|[()]||g')
-echo $BRANCH
+cat code-base/.git/commit_message
+cat code-base/.git/comitter
+cat code-base/.git/ref
