@@ -11,7 +11,7 @@ COMMIT=$(cat .git/ref)
 BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
 echo $BRANCH
 
-message = "updated BRANCH branch"
+message="updated BRANCH branch"
 echo "${message//BRANCH/$BRANCH}"
 
 # append new values
