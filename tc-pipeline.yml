@@ -179,7 +179,7 @@ jobs:
   - task: record source branch
     file: concourse/tasks/add-build-comment.yml
     params:
-      text: "From the `release-*` branch:"
+      text: "From the `{BRANCH}` branch:"
   - do:
     - *install-deps
     - *build-linux
@@ -233,7 +233,7 @@ jobs:
   - task: record source branch
     file: concourse/tasks/add-build-comment.yml
     params:
-      text: "From the `develop` branch:"
+      text: "From the `{BRANCH}` branch:"
   - do:
     - *install-deps
     - *build-linux
