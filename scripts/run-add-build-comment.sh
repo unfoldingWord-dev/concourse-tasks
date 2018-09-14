@@ -13,5 +13,5 @@ ls -la code-base/.git
 cat code-base/.git/HEAD
 cat code-base/.git/FETCH_HEAD
 cat code-base/.git/commit_message
-cat code-base/.git/comitter
+cat code-base/.git/committer
 cat code-base/.git/ref
