@@ -15,5 +15,5 @@ cat code-base/.git/FETCH_HEAD
 ls -la code-base/.git/branches
 
 cd code-base/
-BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
 echo $BRANCH
