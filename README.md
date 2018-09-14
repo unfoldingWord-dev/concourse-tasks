@@ -12,6 +12,10 @@ These are some sample tasks and a pipeline for translationCore.
 1. install [fly](https://github.com/concourse/concourse/releases) on your local machine so you can interact with concourse.
 1. deploy the pipeline with fly!
 
+## Features
+
+You can view the latest builds at https://tc-builds.door43.org.
+
 ## NGINX Reverse Proxy
 
 When running on a server you'll likely want to run concourse behind a domain. You can do this by setting up a reverse proxy in nginx.

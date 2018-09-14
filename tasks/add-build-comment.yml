@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
 - name: concourse
+- name: code-base
 - name: build_meta
   path: input_meta
   optional: true
