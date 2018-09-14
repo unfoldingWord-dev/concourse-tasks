@@ -9,4 +9,5 @@ set -xe
 echo $text >> build_meta/comment.md
 echo $text >> build_meta/notification.txt
 # TODO: debugging
+git branch
 ls -la code-base/.git
