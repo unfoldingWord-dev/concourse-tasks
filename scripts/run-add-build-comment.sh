@@ -17,3 +17,5 @@ cat code-base/.git/committer
 COMMIT=$(cat code-base/.git/ref)
 cd code-base/
 git branch --contains $COMMIT
+git reflog show --all | grep $COMMIT
+git name-rev $COMMIT
