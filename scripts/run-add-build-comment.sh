@@ -10,3 +10,6 @@ echo $text >> build_meta/comment.md
 echo $text >> build_meta/notification.txt
 # TODO: debugging
 ls -la code-base/.git
+cat code-base/.git/HEAD
+cat code-base/.git/FETCH_HEAD
+ls -la code-base/.git/branches
