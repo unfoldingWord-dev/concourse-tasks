@@ -14,4 +14,5 @@ cat code-base/.git/HEAD
 cat code-base/.git/FETCH_HEAD
 cat code-base/.git/commit_message
 cat code-base/.git/committer
-cat code-base/.git/ref
+COMMIT=$(cat code-base/.git/ref)
+git branch --contains $COMMIT
