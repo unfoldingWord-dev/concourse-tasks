@@ -15,4 +15,5 @@ cat code-base/.git/FETCH_HEAD
 ls -la code-base/.git/branches
 
 cd code-base/
-git branch
+BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+echo $BRANCH
