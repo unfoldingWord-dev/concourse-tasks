@@ -9,10 +9,9 @@ set -xe
 cd code-base/
 COMMIT=$(cat .git/ref)
 BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
-echo $BRANCH
+cd ..
 
-message="updated BRANCH branch"
-echo "${message//BRANCH/$BRANCH}"
+echo "${text//\{BRANCH\}/$BRANCH}"
 
 # append new values
 echo $text >> build_meta/comment.md
