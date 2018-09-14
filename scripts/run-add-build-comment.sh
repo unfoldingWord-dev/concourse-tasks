@@ -14,3 +14,5 @@ cd code-base/
 # git branch --contains $COMMIT
 # git reflog show --all | grep $COMMIT
 git name-rev $COMMIT | awk '{print $2;}'
+BRANCH=$(set -- $COMMIT; echo $2)
+echo $BRANCH
