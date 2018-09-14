@@ -11,7 +11,8 @@ COMMIT=$(cat .git/ref)
 BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
 echo $BRANCH
 
-echo "${text//BRANCH/$BRANCH}"
+message = "updated BRANCH branch"
+echo "${message//BRANCH/$BRANCH}"
 
 # append new values
 echo $text >> build_meta/comment.md
