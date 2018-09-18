@@ -14,7 +14,7 @@ if [ -d "$1" ]; then
   commit=$(cat .git/ref)
   branch=$(git name-rev $commit | awk '{print $2;}')
   cd ..
-  echo branch
+  echo "$branch"
 else
   echo "Directory does not exist: $1";
   exit 1;
