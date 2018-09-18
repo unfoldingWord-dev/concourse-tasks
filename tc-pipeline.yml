@@ -134,6 +134,10 @@ resources:
     access_key_id: ((aws-access-id))
     secret_access_key: ((aws-secret-key))
     region_name: us-west-2
+    options:
+      - "--exclude '*'"
+      - "--include 'build/*'"
+      - "--acl 'public-read'"
 # - name: upload
 #   type: s3
 #   source:
