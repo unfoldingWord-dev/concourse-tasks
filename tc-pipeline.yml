@@ -130,7 +130,7 @@ resources:
   type: s3
   source:
     bucket: tc-builds.door43.org
-    regexp: translationCore-(.*)-(.*)-(?P<version>.*)\.(.*)
+    regexp: ([^/]+)\/translationCore-(.*)-(.*)-(?P<version>.*)\.(.*)
     access_key_id: ((aws-access-id))
     secret_access_key: ((aws-secret-key))
     region_name: us-west-2

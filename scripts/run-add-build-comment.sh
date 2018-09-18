@@ -7,10 +7,6 @@ set -xe
 
 # read branch name
 BRANCH=$(./concourse/scripts/get-branch-name.sh code-base)
-# cd code-base/
-# COMMIT=$(cat .git/ref)
-# BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
-# cd ..
 
 # inject variables into text
 text="${text//\{BRANCH\}/$BRANCH}"
