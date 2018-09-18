@@ -6,10 +6,11 @@ set -xe
 ./concourse/scripts/copy-dir.sh input_meta build_meta
 
 # read branch name
-cd code-base/
-COMMIT=$(cat .git/ref)
-BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
-cd ..
+BRANCH=$(./concourse/scripts/get-branch-name.sh code-base)
+# cd code-base/
+# COMMIT=$(cat .git/ref)
+# BRANCH=$(git name-rev $COMMIT | awk '{print $2;}')
+# cd ..
 
 # inject variables into text
 text="${text//\{BRANCH\}/$BRANCH}"
