@@ -8,6 +8,9 @@ set -xe
 # read branch name
 BRANCH=$(./concourse/scripts/get-branch-name.sh code-base)
 
+# filename safe branch
+SAFE_BRANCH=$(echo "$BRANCH" | sed -e 's/[^A-Za-z0-9._-]/_/g')
+
 cd code-base/
 
 HASH=$(git rev-parse HEAD | cut -c1-7)
@@ -19,4 +22,4 @@ echo "TC_HELP_DESK_EMAIL=$TC_HELP_DESK_EMAIL" >> .env
 echo "BUILD=$HASH" >> .env
 
 # execute the appropriate platform builder
-HASH=$HASH VERSION=$VERSION BUILD_CDN=$BUILD_CDN BRANCH=$BRANCH ../concourse/scripts/run-build-$PLATFORM.sh
+HASH=$HASH VERSION=$VERSION BUILD_CDN=$BUILD_CDN BRANCH=$BRANCH SAFE_BRANCH=$SAFE_BRANCH ../concourse/scripts/run-build-$PLATFORM.sh
