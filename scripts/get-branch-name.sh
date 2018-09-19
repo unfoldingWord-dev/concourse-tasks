@@ -11,10 +11,14 @@ fi
 
 if [ -d "$1" ]; then
   cd code-base/
-  # debugging
-  ls -la .git
-  commit=$(cat .git/ref)
-  branch=$(git name-rev $commit | awk '{print $2;}')
+
+  if [ -f ".git/ref" ]; then
+    commit=$(cat .git/ref)
+    branch=$(git name-rev $commit | awk '{print $2;}')
+  else
+    branch=$(git config --get pullrequest.basebranch)
+  fi
+  
   cd ..
   echo "$branch"
 else
