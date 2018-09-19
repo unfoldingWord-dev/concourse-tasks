@@ -16,9 +16,9 @@ if [ -d "$1" ]; then
     commit=$(cat .git/ref)
     branch=$(git name-rev $commit | awk '{print $2;}')
   else
-    branch=$(git config --get pullrequest.basebranch)
+    branch=$(git config --get pullrequest.branch)
   fi
-  
+
   cd ..
   echo "$branch"
 else
