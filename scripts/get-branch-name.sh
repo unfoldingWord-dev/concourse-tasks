@@ -11,6 +11,8 @@ fi
 
 if [ -d "$1" ]; then
   cd code-base/
+  # debugging
+  ls -la .git
   commit=$(cat .git/ref)
   branch=$(git name-rev $commit | awk '{print $2;}')
   cd ..

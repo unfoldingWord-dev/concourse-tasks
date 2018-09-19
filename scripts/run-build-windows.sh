@@ -11,7 +11,7 @@ FILE32=translationCore-win-x32-$VERSION-$HASH.setup.exe
 
 # x64
 echo "[Windows x64 build $VERSION ($HASH)]($BUILD_CDN/$FILE64) is ready for download." >> ../build_meta/comment.md
-echo "<$BUILD_CDN/$BRANCH/$FILE64|Windows x64 build $HASH (v$VERSION)> is ready for download." >> ../build_meta/notification.txt
+echo "<$BUILD_CDN/build/$BRANCH/$FILE64|Windows x64 build $HASH (v$VERSION)> is ready for download." >> ../build_meta/notification.txt
 # x32
 echo "[Windows x32 build $VERSION ($HASH)]($BUILD_CDN/$FILE32) is ready for download." >> ../build_meta/comment.md
-echo "<$BUILD_CDN/$BRANCH/$FILE32|Windows x32 build $HASH (v$VERSION)> is ready for download." >> ../build_meta/notification.txt
+echo "<$BUILD_CDN/build/$BRANCH/$FILE32|Windows x32 build $HASH (v$VERSION)> is ready for download." >> ../build_meta/notification.txt
