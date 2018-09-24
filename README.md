@@ -14,7 +14,7 @@ These are some sample tasks and a pipeline for translationCore.
 
 ## Features
 
-You can view the latest builds at https://tc-builds.door43.org.
+You can view the latest builds at http://tc-builds.door43.org.
 
 ## NGINX Reverse Proxy
 
