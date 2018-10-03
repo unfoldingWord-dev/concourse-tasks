@@ -137,6 +137,7 @@ resources:
     sync: false
     options:
       - "--exclude '*'"
+      - "--recursive"
       - "--include 'build/*'"
       - "--acl 'public-read'"
 # - name: upload
