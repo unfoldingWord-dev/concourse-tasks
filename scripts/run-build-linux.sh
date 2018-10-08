@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -xe
-source trycatch.sh
+source ../concourse/scripts/trycatch.sh
 
 FILE=translationCore-linux-x64-$VERSION-$HASH.deb
 
