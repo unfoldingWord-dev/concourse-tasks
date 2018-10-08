@@ -1,14 +1,17 @@
 #!/bin/bash
 
 set -xe
+source trycatch.sh
 
 FILE=translationCore-linux-x64-$VERSION-$HASH.deb
 
 ./node_modules/.bin/gulp build --linux || exit 1;
 
-{ # try
-  ./node_modules/.bin/gulp release-linux-deb --out=../build/$SAFE_BRANCH/$FILE &&
-} || { # catch
+try
+(
+  ./node_modules/.bin/gulp release-linux-deb --out=../build/$SAFE_BRANCH/$FILE || throw
+)
+catch || { # catch
   FILE=translationCore-linux-x64-$VERSION-$HASH.zip
   ./node_modules/.bin/gulp release-linux --out=../build/$SAFE_BRANCH/$FILE || exit 1;
 }
