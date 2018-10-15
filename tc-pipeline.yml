@@ -167,7 +167,7 @@ jobs:
     - get: concourse
     - get: code-base
       resource: release-branch
-      params: {depth: 1}
+      params: {depth: 100}
       trigger: true
       version: every
     - *install-deps
@@ -185,7 +185,7 @@ jobs:
   plan:
   - get: code-base
     resource: release-branch
-    params: {depth: 1}
+    params: {depth: 100}
     trigger: true
     passed:
       - test-release
@@ -221,7 +221,7 @@ jobs:
   - get: concourse
   - get: code-base
     resource: develop-branch
-    params: {depth: 1}
+    params: {depth: 100}
     trigger: true
     version: latest
   - *install-deps
@@ -239,7 +239,7 @@ jobs:
   plan:
   - get: code-base
     resource: develop-branch
-    params: {depth: 1}
+    params: {depth: 100}
     trigger: true
     passed:
       - test-develop
@@ -274,7 +274,7 @@ jobs:
   plan:
   - get: code-base
     resource: prs-to-develop
-    params: {depth: 1}
+    params: {depth: 100}
     trigger: true
     version: every
   - get: concourse
@@ -312,7 +312,7 @@ jobs:
   plan:
   - get: code-base
     resource: prs-to-develop
-    params: {depth: 1}
+    params: {depth: 100}
     trigger: true
     version: every
     passed:
