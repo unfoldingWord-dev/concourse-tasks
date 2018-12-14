@@ -234,7 +234,8 @@ jobs:
 
 # build develop branch
 - name: build-develop
-  serial: true
+  serial: false
+  max_in_flight: 2
   public: false
   plan:
   - get: code-base
