@@ -4,6 +4,7 @@ These are some sample tasks and a pipeline for translationCore.
 
 ## Prerequisits
 
+1. [concourse](https://concourse-ci.org/)!
 1. install [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository)
 1. install [docker-compose](https://docs.docker.com/compose/install/)
 1. install concourse on either:
