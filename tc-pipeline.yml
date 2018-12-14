@@ -234,8 +234,7 @@ jobs:
 
 # build develop branch
 - name: build-develop
-  serial: false
-  max_in_flight: 2
+  serial: true
   public: false
   plan:
   - get: code-base
@@ -309,7 +308,8 @@ jobs:
 # build pull request
 - name: build-pr
   public: false
-  serial: true
+  serial: false
+  max_in_flight: 2
   plan:
   - get: code-base
     resource: prs-to-develop
