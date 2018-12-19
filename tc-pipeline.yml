@@ -24,9 +24,6 @@ task_templates:
   on_success:
     do:
     - put: upload
-      # params:
-      #   file: build/linux/*
-      #   acl: public-read
 - &build-macos
   task: build-macos
   file: concourse/tasks/build.yml
@@ -40,9 +37,6 @@ task_templates:
   on_success:
     do:
     - put: upload
-      # params:
-      #   file: build/macos/*
-      #   acl: public-read
 - &build-windows
   task: build-windows
   file: concourse/tasks/build.yml
@@ -56,13 +50,6 @@ task_templates:
   on_success:
     do:
     - put: upload
-      # params:
-      #   file: build/windows/x64/*
-      #   acl: public-read
-    # - put: upload
-      # params:
-      #   file: build/windows/x32/*
-      #   acl: public-read
 
 groups:
 - name: develop
@@ -126,6 +113,7 @@ resources:
     base: develop
     ci_skip: true
     authorship_restriction: true
+    ignore_paths: [src/locale]
 - name: upload
   type: s3-folder
   source:
@@ -140,14 +128,6 @@ resources:
       - "--recursive"
       - "--include 'build/*'"
       - "--acl 'public-read'"
-# - name: upload
-#   type: s3
-#   source:
-#     bucket: tc-builds.door43.org
-#     regexp: ([^/]+)\/translationCore-(.*)-(.*)-(?P<version>.*)\.(.*)
-#     access_key_id: ((aws-access-id))
-#     secret_access_key: ((aws-secret-key))
-#     region_name: us-west-2
 - name: upload-index
   type: s3
   source:
