@@ -113,7 +113,6 @@ resources:
     base: develop
     ci_skip: true
     authorship_restriction: true
-    ignore_paths: [src/locale/*]
 - name: upload
   type: s3-folder
   source:
