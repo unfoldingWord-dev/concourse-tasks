@@ -103,6 +103,8 @@ As a convenience we have added a restart script to our concourse installation. R
 In order to upgrade you must log into the server and update `docker-compose.yml` to use the desired version of concourse.
 You should also update the custom worker image `eugenmayer/concourse-worker-solid` to match the version of concourse installed. This custom image makes the workers a bit more stable.
 
+A list of concourse releases can be found at https://concourse-ci.org/download.html.
+
 ## Worker Maintenance
 
 Workers will stall periodically (hopefully this will be [fixed](https://github.com/concourse/concourse/issues/1457) soon).
