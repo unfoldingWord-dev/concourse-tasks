@@ -87,15 +87,18 @@ resource_types:
 resources:
 - name: notify
   type: slack-notification
+  icon: slack
   source:
     url: ((slack-webhook))
 - name: develop-branch
   type: git
+  icon: github-circle
   source:
     uri: https://github.com/unfoldingWord-dev/translationCore
     branch: develop
 - name: release-branch
   type: git-branch-heads
+  icon: github-circle
   source:
     uri: https://github.com/unfoldingWord-dev/translationCore
     branches: [release-v*]
@@ -106,6 +109,7 @@ resources:
     branch: master
 - name: prs-to-develop
   type: pull-request
+  icon: source-pull
   source:
     access_token: ((github-token))
     private_key: ((github-private-key))
@@ -115,6 +119,7 @@ resources:
     authorship_restriction: true
 - name: upload
   type: s3-folder
+  icon: cloud-upload
   source:
     bucket: tc-builds.door43.org
     regexp: ([^/]+)\/translationCore-(.*)-(.*)-(?P<version>.*)\.(.*)
@@ -129,6 +134,7 @@ resources:
       - "--acl 'public-read'"
 - name: upload-index
   type: s3
+  icon: cloud-upload
   source:
     bucket: tc-builds.door43.org
     regexp: (.*).html

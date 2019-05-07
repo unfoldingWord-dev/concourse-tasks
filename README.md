@@ -100,8 +100,11 @@ As a convenience we have added a restart script to our concourse installation. R
 
 ### Upgrading
 
-In order to upgrade you must log into the server and update `docker-compose.yml` to use the desired version of concourse.
-You should also update the custom worker image `eugenmayer/concourse-worker-solid` to match the version of concourse installed. This custom image makes the workers a bit more stable.
+In order to upgrade concourse you must:
+1. log into the ci.door43.org server
+2. edit `docker-compose.yml` and update the concourse image to the desired version.
+3. perform any additional (if any) steps indicated in the release notes.
+3. run `restart_concourse_d43.sh`
 
 A list of concourse releases can be found at https://concourse-ci.org/download.html.
 
