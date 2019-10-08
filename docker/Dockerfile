@@ -1,4 +1,4 @@
-FROM node:8.11.2
+FROM node:8.16.1
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -8,7 +8,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -yq locales zip unzip genisoimage wine wine32 wine64 libwine libwine:i386 innoextract python-software-properties
 
 # install npm
-RUN npm install -g npm@6.0.1
+RUN npm install -g npm@6.4.1
 
 # install inno setup
 RUN mkdir /tmp/inno && \
