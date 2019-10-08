@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # install dependencies
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -yq locales zip unzip genisoimage wine wine32 wine64 libwine libwine:i386 innoextract python-software-properties
+    apt-get install -yq locales zip unzip genisoimage wine wine32 wine64 libwine libwine:i386 innoextract software-properties-common
 
 # install npm
 RUN npm install -g npm@6.4.1
