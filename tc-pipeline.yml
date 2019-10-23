@@ -105,7 +105,7 @@ resources:
 - name: concourse
   type: git
   source:
-    uri: https://github.com/unfoldingWord/concourse-pipeline
+    uri: https://github.com/unfoldingWord-dev/concourse-pipeline
     branch: master
 - name: prs-to-develop
   type: pull-request
