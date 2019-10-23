@@ -94,18 +94,18 @@ resources:
   type: git
   icon: github-circle
   source:
-    uri: https://github.com/unfoldingWord-dev/translationCore
+    uri: https://github.com/unfoldingWord/translationCore
     branch: develop
 - name: release-branch
   type: git-branch-heads
   icon: github-circle
   source:
-    uri: https://github.com/unfoldingWord-dev/translationCore
+    uri: https://github.com/unfoldingWord/translationCore
     branches: [release-v*]
 - name: concourse
   type: git
   source:
-    uri: https://github.com/unfoldingWord-dev/concourse-pipeline
+    uri: https://github.com/unfoldingWord/concourse-pipeline
     branch: master
 - name: prs-to-develop
   type: pull-request
@@ -113,7 +113,7 @@ resources:
   source:
     access_token: ((github-token))
     private_key: ((github-private-key))
-    repo: unfoldingWord-dev/translationCore
+    repo: unfoldingWord/translationCore
     base: develop
     ci_skip: true
     authorship_restriction: true
