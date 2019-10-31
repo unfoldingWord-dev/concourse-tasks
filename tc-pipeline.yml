@@ -50,6 +50,16 @@ task_templates:
   on_success:
     do:
     - put: upload
+- &notify-zulipchat
+  task: notify zulipchat
+  file: concourse/tasks/zulipchat.yml
+  params:
+    org: unfoldingword
+    user: ((zulip-user))
+    token: ((zulip-token))
+    to: SOFTWARE/github
+    subject: tC builds
+    content_file: build_meta/notification.txt
 
 groups:
 - name: develop
@@ -190,13 +200,16 @@ jobs:
         file: concourse/tasks/add-build-comment.yml
         params:
           text: "Some builds failed"
+      - *notify-zulipchat
       - put: notify
         params:
           text_file: build_meta/notification.txt
     on_success:
-      put: notify
-      params:
-        text_file: build_meta/notification.txt
+      do:
+      - *notify-zulipchat
+      - put: notify
+        params:
+          text_file: build_meta/notification.txt
 
 # test develop branch
 - name: test-develop

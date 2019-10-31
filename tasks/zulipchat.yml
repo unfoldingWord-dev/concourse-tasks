@@ -1,0 +1,23 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: neutrinog/concourse-tasks
+
+inputs:
+  - name: build_meta
+  - name: concourse
+
+params:
+  org:
+  user:
+  token:
+  to:
+  subject:
+  # This should be a path in build_meta
+  content_file:
+
+run:
+  path: concourse/scripts/run-zulipchat.sh
