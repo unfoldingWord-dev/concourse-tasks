@@ -59,7 +59,7 @@ task_templates:
     token: ((zulip-token))
     to: SOFTWARE/github
     subject: tC builds
-    content_file: build_meta/notification.txt
+    content_file: build_meta/comment.md
 
 groups:
 - name: develop
