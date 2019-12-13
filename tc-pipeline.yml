@@ -257,13 +257,16 @@ jobs:
         file: concourse/tasks/add-build-comment.yml
         params:
           text: "Some builds failed"
+      - *notify-zulipchat
       - put: notify
         params:
           text_file: build_meta/notification.txt
     on_success:
-      put: notify
-      params:
-        text_file: build_meta/notification.txt
+      do:
+        - *notify-zulipchat
+        - put: notify
+          params:
+            text_file: build_meta/notification.txt
 
 # test pull requests
 - name: test-pr
