@@ -3,19 +3,19 @@
 platform: linux
 
 image_resource:
-- type: docker-image
-- source:
-  - repository: neutrinog/concourse-tasks
+  type: docker-image
+  source:
+    repository: neutrinog/concourse-tasks
 
 inputs:
-- name: concourse
-- name: code-base
+  - name: concourse
+  - name: code-base
 
 outputs:
-- name: test-log
+  - name: test-log
 
 params:
-- CODECOV_TOKEN:
+  - CODECOV_TOKEN:
 
 run:
-- path: concourse/scripts/run-unit-tests.sh
+  - path: concourse/scripts/run-unit-tests.sh
