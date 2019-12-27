@@ -7,8 +7,8 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-  - name: build_meta
-  - name: concourse
+- name: build_meta
+- name: concourse
 
 params:
   org:

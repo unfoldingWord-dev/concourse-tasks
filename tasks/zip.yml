@@ -7,9 +7,9 @@ image_resource:
     repository: neutrinog/concourse-tasks
 
 inputs:
-  - name: build
+- name: build
 outputs:
-  - name: release
+- name: release
 run:
   path: zip
   args: [-r, release/dist.zip, build]
