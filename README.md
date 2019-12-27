@@ -106,7 +106,7 @@ In order to upgrade concourse you must:
 3. perform any additional (if any) steps indicated in the release notes.
 3. run `restart_concourse_d43.sh`
 
-A list of concourse releases can be found at https://concourse-ci.org/download.html.
+A list of concourse releases can be found at https://github.com/concourse/concourse/releases.
 
 ## Worker Maintenance
 
